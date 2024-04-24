@@ -6,15 +6,6 @@ import chalkAnimation from "chalk-animation";
 const log = console.log;
 
 const login = async (): Promise<void> => {
-  // const spinner = createSpinner(
-  //   "Plaese be ready for Login into the system"
-  // ).start();
-  // setTimeout(() => {
-  //   spinner.success().stop();
-  // }, 1000);
-  // log(chalk.blue("Hello") + " World" + chalk.red("!"));
-  // let msg = chalk.blue("Enter") + " your username" + chalk.red(":");
-  // let msg = "Enter your username";
   const username = await inquirer.prompt({
     type: "input",
     name: "username",
