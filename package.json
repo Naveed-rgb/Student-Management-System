@@ -1,0 +1,31 @@
+{
+  "name": "student-management-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node ./build/index.js"
+  },
+  "keywords": [
+    "student-management-system",
+    "sms",
+    "cli based student management system"
+  ],
+  "author": "Naveed Malik(softprog8)",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "chalk-animation": "^1.6.0",
+    "figlet": "^1.7.0",
+    "gradient-string": "^2.0.2",
+    "inquirer": "^8.2.6",
+    "nanospinner": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/chalk-animation": "^1.6.3",
+    "@types/figlet": "^1.5.8",
+    "@types/gradient-string": "^1.1.6",
+    "@types/inquirer": "^9.0.7"
+  }
+}
