@@ -10,7 +10,6 @@ const login = async (): Promise<void> => {
     type: "input",
     name: "username",
     message: "Enter your username",
-    // message: `${chalkAnimation.karaoke(msg).start()}`,
   });
 
   const password = await inquirer.prompt({
@@ -18,20 +17,44 @@ const login = async (): Promise<void> => {
     name: "password",
     message: "Enter your password:",
   });
+  const spinner = createSpinner("Logging in...");
 
   // Validate user input (e.g., check if username and password are correct)
   if (username && password) {
-    // Login successful, proceed to main menu
-    let u_name = "admin";
-    let pwd = "pwd";
-    if (username == username && password == password) {
-      console.log(chalk.green("Login successful!"));
+    const u_name = "admin";
+    const pwd = "pwd";
+    if (username.username === u_name && password.password === pwd) {
+      spinner.start();
+      await sleep(2000); // Wait for 5 seconds
+      spinner.clear(); // Clear the spinner from the console
+      log(`\n`);
+      spinner.success({ text: `${chalk.green("Login successful!")}` });
+      spinner.clear(); // Clear the spinner from the console
+      log(`\n`);
+      const rainbowTitle = chalkAnimation.rainbow("Welcome to the main menu!");
+      await sleep(2000);
+      rainbowTitle.stop(); // Stop the animation
+      log(`\n`);
+      // Proceed to main menu
+      // ...
+    } else {
+      spinner.start();
+      await sleep(2000); // Wait for 5 seconds
+      spinner.clear();
+      log(`\n`);
+      spinner.error({
+        text: `${chalk.red("Invalid username or password. Please try again.")}`,
+      });
+      log(`\n`);
+      spinner.clear(); // Clear the spinner from the console
+      // Restart the login process
+      await login(); // Recursive call
     }
-    // ...
-  } else {
-    // Login failed, display error message
-    console.log(chalk.red("Invalid username or password. Please try again."));
   }
 };
 
 export default login;
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
