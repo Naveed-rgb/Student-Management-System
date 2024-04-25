@@ -2,7 +2,6 @@ import chalk from "chalk";
 import chalkAnimation from "chalk-animation";
 import figlet from "figlet";
 import gradient from "gradient-string";
-
 import login from "./login";
 
 function welcomeScreen() {
@@ -61,7 +60,7 @@ function welcomeScreen() {
     setTimeout(() => {
       systemAnimation.stop(); // Animation stops after 5 seconds
       login();
-    }, 5000); // Increased the timeout to 5 seconds
+    }, 3000); // Increased the timeout to 5 seconds
   });
 }
 console.clear();
