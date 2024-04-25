@@ -8,7 +8,29 @@ import login from "./login";
 function welcomeScreen() {
   const welcomeToMsg = figlet.textSync(`               Welcome  to The  `, {
     font: "Small",
-    horizontalLayout: "default",
+  /* Replace "Standard" with one of the following valid font names:
+    "Standard"
+    "Script"
+    "Slant"
+    "Bubble"
+    "Digital"
+    "Block"
+    "Banner"
+    "Random" */
+  /* horizontalLayout:
+    "default" (left-aligned)
+    "center" (center-aligned)
+    "full" (full-width, no truncation)
+    "fitted" (full-width, with truncation)
+    verticalLayout:
+    "default" (top-aligned)
+    "center" (middle-aligned)
+    "full" (full-height, no truncation)
+    "fitted" (full-height, with truncation)
+    width:any positive integer (sets the maximum width in characters)
+    whitespaceBreak:true (breaks lines at whitespace characters) false (breaks lines at any character)
+*/
+    horizontalLayout: "default", 
     verticalLayout: "default",
     width: 200,
     whitespaceBreak: true,
