@@ -3,11 +3,16 @@ import chalkAnimation from "chalk-animation";
 import figlet from "figlet";
 import gradient from "gradient-string";
 import login from "./login";
+import { createSpinner, Spinner } from "nanospinner";
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 function welcomeScreen() {
   const welcomeToMsg = figlet.textSync(`               Welcome  to The  `, {
     font: "Small",
-  /* Replace "Standard" with one of the following valid font names:
+    /* Replace "Small" with one of the following valid font names:
     "Standard"
     "Script"
     "Slant"
@@ -16,7 +21,7 @@ function welcomeScreen() {
     "Block"
     "Banner"
     "Random" */
-  /* horizontalLayout:
+    /* horizontalLayout:
     "default" (left-aligned)
     "center" (center-aligned)
     "full" (full-width, no truncation)
@@ -29,7 +34,7 @@ function welcomeScreen() {
     width:any positive integer (sets the maximum width in characters)
     whitespaceBreak:true (breaks lines at whitespace characters) false (breaks lines at any character)
 */
-    horizontalLayout: "default", 
+    horizontalLayout: "default",
     verticalLayout: "default",
     width: 200,
     whitespaceBreak: true,
@@ -42,26 +47,39 @@ function welcomeScreen() {
   );
 
   const systemString = " Student   Management   System";
-  figlet(systemString, {
-    font: "Small", // Use a smaller font size
-    horizontalLayout: "default",
-    verticalLayout: "default",
-    width: 150,
-    whitespaceBreak: true,
-  }, (err, data) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    const systemAnimation = chalkAnimation.rainbow(
-      `${gradient.fruit.multiline(data)}\r\n`
-    );
+  figlet(
+    systemString,
+    {
+      font: "Small", // Use a smaller font size
+      horizontalLayout: "default",
+      verticalLayout: "default",
+      width: 150,
+      whitespaceBreak: true,
+    },
+    async (err, data) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      const systemAnimation = chalkAnimation.rainbow(
+        `${gradient.fruit.multiline(data)}\r\n`
+      );
 
-    setTimeout(() => {
-      systemAnimation.stop(); // Animation stops after 5 seconds
-      login();
-    }, 3000); // Increased the timeout to 5 seconds
-  });
+      setTimeout(async () => {
+        systemAnimation.stop(); // Animation stops after 5 seconds
+
+        let spinner = createSpinner("Setting up the system...");
+        spinner.start();
+        await sleep(2000); // Wait for 5 seconds
+        spinner.clear(); // Clear the spinner from the console
+        spinner.success({
+          text: `${chalk.green("Now it is ready to login!")}`,
+        });
+        console.log("\n");
+        login();
+      }, 3000); // Increased the timeout to 3 seconds
+    }
+  );
 }
 console.clear();
 welcomeScreen();
