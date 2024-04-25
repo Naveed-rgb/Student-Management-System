@@ -6,7 +6,7 @@ import gradient from "gradient-string";
 import login from "./login";
 
 function welcomeScreen() {
-  const welcomeToMsg = figlet.textSync(`                    Welcome  to The`, {
+  const welcomeToMsg = figlet.textSync(`               Welcome  to The  `, {
     font: "Small",
     horizontalLayout: "default",
     verticalLayout: "default",
@@ -20,8 +20,14 @@ function welcomeScreen() {
     )
   );
 
-  const systemString = " Student Management System";
-  figlet(systemString, (err, data) => {
+  const systemString = " Student   Management   System";
+  figlet(systemString, {
+    font: "Small", // Use a smaller font size
+    horizontalLayout: "default",
+    verticalLayout: "default",
+    width: 150,
+    whitespaceBreak: true,
+  }, (err, data) => {
     if (err) {
       console.error(err);
       return;
